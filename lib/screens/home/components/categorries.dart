@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+import '../../../main.dart';
 
 // We need satefull widget for our categories
 
@@ -44,14 +45,22 @@ class _CategoriesState extends State<Categories> {
               categories[index],
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: selectedIndex == index ? kTextColor : kTextLightColor,
+                color: selectedIndex == index
+                    ? MyApp.themeNotifier.value == ThemeMode.light
+                        ? ThemeData.light().textTheme.bodyText1.color
+                        : ThemeData.dark().textTheme.bodyText1.color
+                    : kTextLightColor,
               ),
             ),
             Container(
               margin: EdgeInsets.only(top: kDefaultPaddin / 4), //top padding 5
               height: 2,
               width: 30,
-              color: selectedIndex == index ? Colors.black : Colors.transparent,
+              color: selectedIndex == index
+                  ? MyApp.themeNotifier.value == ThemeMode.light
+                      ? ThemeData.light().textTheme.bodyText1.color
+                      : ThemeData.dark().textTheme.bodyText1.color
+                  : Colors.transparent,
             )
           ],
         ),
